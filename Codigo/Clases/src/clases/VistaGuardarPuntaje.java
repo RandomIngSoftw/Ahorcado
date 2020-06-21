@@ -11,11 +11,13 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class VistaGuardarPuntaje extends JFrame implements Vista {
 
 	private JPanel contentPane;
 	private Controlador controlador;
+	private JTextField nombre;
 
 	/**
 	 * Create the frame.
@@ -46,15 +48,19 @@ public class VistaGuardarPuntaje extends JFrame implements Vista {
 				controlador.ascender();
 			}
 		});
-		btnAscender.setBounds(155, 102, 91, 23);
+		btnAscender.setBounds(125, 109, 91, 23);
 		contentPane.add(btnAscender);
+		
+		nombre = new JTextField();
+		nombre.setBounds(115, 78, 119, 20);
+		contentPane.add(nombre);
+		nombre.setColumns(10);
 	}
 
 
 	@Override
 	public void hacerVisible(boolean b) {
 		// TODO Auto-generated method stub
-		
+		setVisible(b);
 	}
-
 }

@@ -7,6 +7,13 @@ public class ControladorGuardarPuntaje implements Controlador{
 	public ControladorGuardarPuntaje() {
 		this.modelo = Modelo.getInstance();
 	}
+	
+	@Override
+	public void ascender() {
+		// TODO Auto-generated method stub
+		modelo.ascender();
+	}
+	
 	@Override
 	public void juegoNormal() {
 		// TODO Auto-generated method stub
@@ -49,10 +56,6 @@ public class ControladorGuardarPuntaje implements Controlador{
 			
 		}
 
-	@Override
-		public void ascender() {
-			// TODO Auto-generated method stub
-			modelo.ascender();
-		}
+	
 
 }

@@ -2,6 +2,12 @@ package clases;
 
 public class ControladorJuegoPerdido implements Controlador{
 
+	private Modelo modelo;
+	
+	public ControladorJuegoPerdido() {
+		this.modelo = Modelo.getInstance();
+	}
+	
 	@Override
 	public void juegoNormal() {
 		// TODO Auto-generated method stub
@@ -35,7 +41,7 @@ public class ControladorJuegoPerdido implements Controlador{
 	@Override
 	public void cerrarVentana() {
 		// TODO Auto-generated method stub
-		
+		modelo.cerrarVentanaJuegoPerdido();
 	}
 
 	@Override

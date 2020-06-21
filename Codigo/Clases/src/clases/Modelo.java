@@ -43,11 +43,18 @@ public class Modelo {
 		vistaActual.hacerVisible(true);
 	}
 	
-	public void verTop10(){
-		System.out.print("Se inició vetTop10\n");		
+	public void iniciarJuegoNormal() {
+//		System.out.print("Se inició juego Normal\n");
 		vistaActual.hacerVisible(false);
-		vistaActual = (Vista)new VistaTop10();
+		vistaActual = new VistaJuegoNormal();
 		vistaActual.hacerVisible(true);
+	}
+	
+//------ cerrar ventana -------- //	
+	
+	public void cerraVentanaEstadisticas() {
+		vistaAdicional.hacerVisible(false);
+		vistaAdicional = null;
 	}
 	
 	public void cerrarVentanaTop10() {
@@ -56,34 +63,49 @@ public class Modelo {
 		iniciarVistaMenuPrincipal();
 	}
 	
-	public void salirJuego(){
-//		System.out.print("Adios\n");
-		// falta agregar que se escriban los archivos
+	public void cerrarVentanaJuegoPerdido() {
 		vistaActual.hacerVisible(false);
 		vistaActual = null;
-		vistaAdicional = null;
+		iniciarVistaMenuPrincipal();
 	}
-
-	public void iniciarJuegoNormal() {
-//		System.out.print("Se inició juego Normal\n");
+	
+	public void cerrarVentanaJuegoGanado() {
 		vistaActual.hacerVisible(false);
-		vistaActual = new VistaJuegoNormal();
-		vistaActual.hacerVisible(true);
+		vistaActual = null;
+		iniciarVistaMenuPrincipal();
 	}
 
-//---- Juego Normal y Relax ----//	
+
+//---- ver ventana ----//	
 	public void verEstaditicas() {
 //		System.out.print("Se inició ver Estaditicas\n");
 		vistaAdicional = (Vista)new VistaEstadisticas();
 		vistaAdicional.hacerVisible(true);
 	}
 
-	public void cerraVentanaEstadisticas() {
-		vistaAdicional.hacerVisible(false);
-		vistaAdicional = null;
+	public void verTop10(){
+		System.out.print("Se inició vetTop10\n");		
+		vistaActual.hacerVisible(false);
+		vistaActual = (Vista)new VistaTop10();
+		vistaActual.hacerVisible(true);
 	}
 
-// -----------------------------//
+	public void verPausa(){
+		
+	}
+	
+	public void verJuegoPerdido(){
+		
+	}
+	
+	public void verJuegoGanado(){
+		
+	}
+	
+	public void verGuardarPuntaje(){
+		
+	}
+// ---- gets -------//
 	
 	public Vista getVistaActual () {
 		return vistaActual;
@@ -93,20 +115,23 @@ public class Modelo {
 		return vistaActual;
 	}
 
+// ---- Operaciones del juego  ---- //
 	public void siguienteNivel() {
 	}
 
 	public void ascender() {
 		
 	}
+
+	public void salirJuego(){
+//		System.out.print("Adios\n");
+		// falta agregar que se escriban los archivos
+		vistaActual.hacerVisible(false);
+		vistaActual = null;
+		vistaAdicional = null;
+	}
 	
 	/*
-	public void verEstadisticas(){}
-	public void verVistaMenuPrincipal(){}
-	public void verPausa(){}
-	public void verJuegoPerdido(){}
-	public void verJuegoGanado(){}
-	public void verGuardarPuntaje(){}
 	public void guardarPuntaje(){}
 	public void ingresoDeLetra(){}
 	public void guardarPalabrasNormal(Map){}

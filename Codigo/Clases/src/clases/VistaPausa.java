@@ -15,7 +15,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class VistaPausa extends JFrame {
+public class VistaPausa extends JFrame implements Vista{
 
 	private JPanel contentPane;
 	private Controlador controlador;
@@ -57,4 +57,11 @@ public class VistaPausa extends JFrame {
 		lblHasPasadoDe.setBounds(94, 36, 125, 14);
 		contentPane.add(lblHasPasadoDe);
 	}
+
+	@Override
+	public void hacerVisible(boolean b) {
+		// TODO Auto-generated method stub
+		setVisible(b);
+	}
+	
 }

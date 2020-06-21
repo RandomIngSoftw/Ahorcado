@@ -54,4 +54,5 @@ public class VistaTop10 extends JFrame implements Vista{
 		// TODO Auto-generated method stub
 		setVisible(b);
 	}
+	
 }
