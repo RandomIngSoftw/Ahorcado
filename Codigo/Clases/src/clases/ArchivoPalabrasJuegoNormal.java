@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
+
 public class ArchivoPalabrasJuegoNormal implements Lector {
 
     private TreeMap<Integer, ArrayList> niveles;

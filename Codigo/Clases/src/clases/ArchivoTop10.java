@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+
 public class ArchivoTop10 implements Lector {
     private TreeMap<Integer, String> Top10;
     private BufferedReader BR;
