@@ -6,6 +6,7 @@ import clases.VistaTop10;
 public class Modelo {
 
 	private static Modelo modelo = null;
+	private InformacionDelJuego informacionDelJuego;
 	private Vista vistaActual;
 	private Vista vistaAdicional;
 	
@@ -18,7 +19,11 @@ public class Modelo {
 	Map<> palabrasNormal;
 	 */
 	
-	private Modelo() {}
+	private Modelo() {
+		informacionDelJuego = new InformacionDelJuego();
+		vistaActual = null;
+		vistaAdicional = null;
+	}
 	
 	public static Modelo getInstance(){
 		if(modelo == null){
@@ -39,14 +44,14 @@ public class Modelo {
 	public void inciarJuegoRelax(){
 //		System.out.print("Se inició juego Relax\n");	
 		vistaActual.hacerVisible(false);
-		vistaActual = new VistaJuegoRelax();
+		vistaActual = new VistaJuegoRelax(informacionDelJuego);
 		vistaActual.hacerVisible(true);
 	}
 	
 	public void iniciarJuegoNormal() {
 //		System.out.print("Se inició juego Normal\n");
 		vistaActual.hacerVisible(false);
-		vistaActual = new VistaJuegoNormal();
+		vistaActual = new VistaJuegoNormal(informacionDelJuego);
 		vistaActual.hacerVisible(true);
 	}
 	
@@ -79,7 +84,7 @@ public class Modelo {
 //---- ver ventana ----//	
 	public void verEstaditicas() {
 //		System.out.print("Se inició ver Estaditicas\n");
-		vistaAdicional = (Vista)new VistaEstadisticas();
+		vistaAdicional = (Vista)new VistaEstadisticas(informacionDelJuego);
 		vistaAdicional.hacerVisible(true);
 	}
 

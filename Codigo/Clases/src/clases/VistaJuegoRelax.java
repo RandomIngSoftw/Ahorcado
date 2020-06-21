@@ -21,10 +21,17 @@ public class VistaJuegoRelax extends JFrame implements Vista, Observador{
 	private JPanel contentPane;
 	private Controlador controlador;
 	private ImageIcon imagen[] ;
-//	private Sujeto sujeto;
+	private JLabel imagen_label;
+	private JLabel lblPalabra;
+	private JLabel lblLetrasErroneas;
+	private JLabel lblNivel;
+	private JLabel lblJuegoNormal;
+	private List list_nivel;
+	private List list_palabra;
+	private List list_letra_Erronea;
 	
-//	public VistaJuegoRelax(Sujeto s) {
-//			s.agregarObservador(this);
+	private Sujeto sujeto;
+	
 	public void cargarImagenes() {
 		
 		imagen[0] = new ImageIcon(getClass().getResource("im1.jpg"));
@@ -36,10 +43,13 @@ public class VistaJuegoRelax extends JFrame implements Vista, Observador{
 		
 	}
 	
-	public VistaJuegoRelax() {
+	public VistaJuegoRelax(Sujeto sujeto) {
 		imagen = new ImageIcon[6];
 		cargarImagenes();
 
+		this.sujeto = sujeto;
+		sujeto.suscribirObservador(this);
+		
 		controlador = (Controlador)new ControladorJuegoRelax();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,39 +68,39 @@ public class VistaJuegoRelax extends JFrame implements Vista, Observador{
 		btnVerEstadisticas.setBounds(27, 227, 142, 23);
 		contentPane.add(btnVerEstadisticas);
 		
-		JLabel imagen_label = new JLabel("figura");
+		imagen_label = new JLabel("figura");
 		imagen_label.setBounds(211, 11, imagen[0].getIconWidth(), imagen[0].getIconHeight());
 		imagen_label.setIcon(imagen[0]);
 		contentPane.add(imagen_label);
 		
-		JLabel lblNivel = new JLabel("Nivel");
+		lblNivel = new JLabel("Nivel");
 		lblNivel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNivel.setBounds(139, 137, 46, 14);
 		contentPane.add(lblNivel);
 		
-		List list_nivel = new List();
+		list_nivel = new List();
 		list_nivel.setBounds(133, 167, 52, 23);
 		contentPane.add(list_nivel);
 		
-		JLabel lblPalabra = new JLabel("Palabra");
+		lblPalabra = new JLabel("Palabra");
 		lblPalabra.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPalabra.setBounds(10, 87, 46, 14);
 		contentPane.add(lblPalabra);
 		
-		List list_palabra = new List();
+		list_palabra = new List();
 		list_palabra.setBounds(69, 87, 100, 23);
 		contentPane.add(list_palabra);
 		
-		JLabel lblLetras = new JLabel("Letras Erroneas");
-		lblLetras.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLetras.setBounds(10, 137, 124, 14);
-		contentPane.add(lblLetras);
+		lblLetrasErroneas = new JLabel("Letras Erroneas");
+		lblLetrasErroneas.setHorizontalAlignment(SwingConstants.LEFT);
+		lblLetrasErroneas.setBounds(10, 137, 124, 14);
+		contentPane.add(lblLetrasErroneas);
 		
-		List list_letra_ingresada = new List();
-		list_letra_ingresada.setBounds(10, 167, 100, 43);
-		contentPane.add(list_letra_ingresada);
+		list_letra_Erronea = new List();
+		list_letra_Erronea.setBounds(10, 167, 100, 43);
+		contentPane.add(list_letra_Erronea);
 		
-		JLabel lblJuegoNormal = new JLabel("Juego Relax");
+		lblJuegoNormal = new JLabel("Juego Relax");
 		lblJuegoNormal.setHorizontalAlignment(SwingConstants.CENTER);
 		lblJuegoNormal.setBounds(45, 32, 89, 14);
 		contentPane.add(lblJuegoNormal);
@@ -103,5 +113,25 @@ public class VistaJuegoRelax extends JFrame implements Vista, Observador{
 		
 	}
 
+	@Override
+	public void actualizar(int puntaje, int vida, int nivel, String tiempo, String palabra) {
+		
+	}
+	
+	public void setPalabra() {
+		
+	}
+	
+	public void setLetraIngresada() {
+		
+	}
+	
+	public void setNivel() {
+		
+	}
+	
+	public void setImagen() {
+		
+	}
 }
 
