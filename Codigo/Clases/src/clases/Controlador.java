@@ -8,5 +8,7 @@ public interface Controlador {
 	 void salir();
 	 void verEstadisticas();
 	 void cerrarVentana();
+	void siguienteNivel();
+	void ascender();
 
 }

@@ -2,6 +2,11 @@ package clases;
 
 public class ControladorGuardarPuntaje implements Controlador{
 
+	private Modelo modelo;
+	
+	public ControladorGuardarPuntaje() {
+		this.modelo = Modelo.getInstance();
+	}
 	@Override
 	public void juegoNormal() {
 		// TODO Auto-generated method stub
@@ -37,5 +42,17 @@ public class ControladorGuardarPuntaje implements Controlador{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+		public void siguienteNivel() {
+			// TODO Auto-generated method stub
+			
+		}
+
+	@Override
+		public void ascender() {
+			// TODO Auto-generated method stub
+			modelo.ascender();
+		}
 
 }

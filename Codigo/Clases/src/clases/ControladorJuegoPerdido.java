@@ -38,4 +38,16 @@ public class ControladorJuegoPerdido implements Controlador{
 		
 	}
 
+	@Override
+		public void siguienteNivel() {
+			// TODO Auto-generated method stub
+			
+		}
+
+	@Override
+		public void ascender() {
+			// TODO Auto-generated method stub
+			
+		}
+
 }

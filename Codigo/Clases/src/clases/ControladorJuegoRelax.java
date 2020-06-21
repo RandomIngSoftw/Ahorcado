@@ -2,11 +2,11 @@ package clases;
 
 public class ControladorJuegoRelax implements Controlador{
 	
+	private static Modelo modelo;
 
-	@Override
-	public void verEstadisticas() {
-		// TODO Auto-generated method stub
-		
+	public ControladorJuegoRelax() {
+		super();
+		this.modelo = Modelo.getInstance();
 	}
 	
 	@Override
@@ -39,4 +39,19 @@ public class ControladorJuegoRelax implements Controlador{
 		
 	}
 
+	public void verEstadisticas() {
+		modelo.verEstaditicas();
+	}
+
+	@Override
+		public void siguienteNivel() {
+			// TODO Auto-generated method stub
+			
+		}
+
+	@Override
+		public void ascender() {
+			// TODO Auto-generated method stub
+			
+		}
 }

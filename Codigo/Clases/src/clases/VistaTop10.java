@@ -17,27 +17,12 @@ import java.awt.event.ActionEvent;
 public class VistaTop10 extends JFrame implements Vista{
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaTop10 frame = new VistaTop10();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	private Controlador controlador; 
+	
 	public VistaTop10() {
+		
+		controlador = (Controlador) new ControladorTop10();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 244, 344);
 		contentPane = new JPanel();
@@ -57,6 +42,7 @@ public class VistaTop10 extends JFrame implements Vista{
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// cierra
+				controlador.cerrarVentana();
 			}
 		});
 		btnCerrar.setBounds(82, 283, 91, 23);
@@ -66,6 +52,6 @@ public class VistaTop10 extends JFrame implements Vista{
 	@Override
 	public void hacerVisible(boolean b) {
 		// TODO Auto-generated method stub
-		
+		setVisible(b);
 	}
 }

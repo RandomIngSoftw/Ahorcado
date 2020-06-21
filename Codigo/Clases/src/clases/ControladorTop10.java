@@ -2,6 +2,11 @@ package clases;
 
 public class ControladorTop10 implements Controlador{
 
+	private Modelo modelo;
+	
+	public ControladorTop10() {
+		this.modelo = Modelo.getInstance();
+	}
 	@Override
 	public void juegoNormal() {
 		// TODO Auto-generated method stub
@@ -34,8 +39,18 @@ public class ControladorTop10 implements Controlador{
 
 	@Override
 	public void cerrarVentana() {
-		// TODO Auto-generated method stub
-		
+		modelo.cerrarVentanaTop10();
 	}
+	
+	@Override
+	public void siguienteNivel() {
+		modelo.siguienteNivel();
+			
+	}
+	@Override
+		public void ascender() {
+			// TODO Auto-generated method stub
+			
+		}
 
 }

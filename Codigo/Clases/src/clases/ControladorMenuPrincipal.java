@@ -22,7 +22,6 @@ public class ControladorMenuPrincipal implements Controlador{
 
 	public void verTop10() {
 		modelo.verTop10();
-		
 	}
 
 	public void salir() {
@@ -40,6 +39,18 @@ public class ControladorMenuPrincipal implements Controlador{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+		public void siguienteNivel() {
+			// TODO Auto-generated method stub
+			
+		}
+
+	@Override
+		public void ascender() {
+			// TODO Auto-generated method stub
+			
+		}
 	
 	
 }

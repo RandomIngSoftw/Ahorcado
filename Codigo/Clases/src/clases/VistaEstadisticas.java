@@ -39,6 +39,7 @@ public class VistaEstadisticas extends JFrame implements Vista, Observador{
 		lblEstadisticas.setBounds(120, 25, 75, 14);
 		contentPane.add(lblEstadisticas);
 		
+		
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
