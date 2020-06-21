@@ -58,6 +58,7 @@ public class VistaJuegoRelax extends JFrame implements Vista, Observador{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JButton btnVerEstadisticas = new JButton("Ver Estadisticas");
 		btnVerEstadisticas.addActionListener(new ActionListener() {
