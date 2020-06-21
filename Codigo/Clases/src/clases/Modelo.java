@@ -6,19 +6,18 @@ import clases.VistaTop10;
 public class Modelo {
 
 	private static Modelo modelo = null;
+	private InformacionDelJuego informacionDelJuego;
 	private Vista vistaActual;
 	private Vista vistaAdicional;
+	private JuegoNormal juegoNormal; 
+	private JuegoRelax juegoRelax; 
+	private Lector lectorActual;
 	
-	/*
-	Lector lectorActual;
-	JuegoNormal juegoNormal; 
-	JuegoRelax juegoRelax; 
-	InformacionDelJuego informacionDelJuego: 
-	List<> palabrasRelax; 
-	Map<> palabrasNormal;
-	 */
-	
-	private Modelo() {}
+	private Modelo() {
+		informacionDelJuego = new InformacionDelJuego();
+		vistaActual = null;
+		vistaAdicional = null;
+	}
 	
 	public static Modelo getInstance(){
 		if(modelo == null){
@@ -31,26 +30,25 @@ public class Modelo {
 		iniciarVistaMenuPrincipal();
 	}
 	
+	
 	public void iniciarVistaMenuPrincipal() {
 		vistaActual = (Vista)new VistaMenuPrincipal();
 		vistaActual.hacerVisible(true);
 	}
 	
 	public void inciarJuegoRelax(){
-//		System.out.print("Se inició juego Relax\n");	
 		vistaActual.hacerVisible(false);
-		vistaActual = new VistaJuegoRelax();
+		vistaActual = new VistaJuegoRelax(informacionDelJuego);
+//		juegoRelax = new JuegoRelax();
 		vistaActual.hacerVisible(true);
 	}
 	
 	public void iniciarJuegoNormal() {
-//		System.out.print("Se inició juego Normal\n");
 		vistaActual.hacerVisible(false);
-		vistaActual = new VistaJuegoNormal();
+		vistaActual = new VistaJuegoNormal(informacionDelJuego);
+//		juegoNormal = new JuegoNormal();
 		vistaActual.hacerVisible(true);
 	}
-	
-//------ cerrar ventana -------- //	
 	
 	public void cerraVentanaEstadisticas() {
 		vistaAdicional.hacerVisible(false);
@@ -74,12 +72,9 @@ public class Modelo {
 		vistaActual = null;
 		iniciarVistaMenuPrincipal();
 	}
-
-
-//---- ver ventana ----//	
+	
 	public void verEstaditicas() {
-//		System.out.print("Se inició ver Estaditicas\n");
-		vistaAdicional = (Vista)new VistaEstadisticas();
+		vistaAdicional = (Vista)new VistaEstadisticas(informacionDelJuego);
 		vistaAdicional.hacerVisible(true);
 	}
 
@@ -105,7 +100,6 @@ public class Modelo {
 	public void verGuardarPuntaje(){
 		
 	}
-// ---- gets -------//
 	
 	public Vista getVistaActual () {
 		return vistaActual;
@@ -115,7 +109,6 @@ public class Modelo {
 		return vistaActual;
 	}
 
-// ---- Operaciones del juego  ---- //
 	public void siguienteNivel() {
 	}
 
@@ -123,8 +116,7 @@ public class Modelo {
 		
 	}
 
-	public void salirJuego(){
-//		System.out.print("Adios\n");
+	public void salirJuego() {
 		// falta agregar que se escriban los archivos
 		vistaActual.hacerVisible(false);
 		vistaActual = null;
