@@ -120,8 +120,12 @@ public class Modelo {
 	}
 	
 	public void cerrarVentanaJuegoPerdido() {
-		vistaActual.hacerVisible(false);
-		vistatercera.hacerVisible(false);
+		if(vistaActual != null) vistaActual.hacerVisible(false);
+		if(vistaAdicional != null) vistaAdicional.hacerVisible(false);
+		if(vistatercera != null) vistatercera.hacerVisible(false);
+		vistaActual = null;
+		vistaAdicional = null;
+		vistatercera = null;
 		iniciarVistaMenuPrincipal();
 	}
 	

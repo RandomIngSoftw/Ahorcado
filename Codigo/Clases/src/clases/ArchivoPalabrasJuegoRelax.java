@@ -24,7 +24,7 @@ public class ArchivoPalabrasJuegoRelax implements Lector{
     @Override
     public void leerArchivo() {
         try {
-            FileReader arc = new FileReader(".\\src\\palabras.txt");
+            FileReader arc = new FileReader("C:\\Users\\ignac\\git\\Ahorcado\\Codigo\\Clases\\src\\palabras.txt");
 			BR = new BufferedReader(arc);
             StreamTokenizer st = new StreamTokenizer(BR);
             while (st.nextToken() != StreamTokenizer.TT_EOF) {
