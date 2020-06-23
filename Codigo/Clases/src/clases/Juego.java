@@ -15,7 +15,7 @@ public abstract class Juego {
 	protected int palabrasEnNivel;
 	protected Boolean alcanzoVictoria;
 	protected CondicionDerrota perder;
-	
+	protected int palabrasAdivinadas;
 	
 	public Juego() {
 		condicionVictoria = false;
@@ -26,7 +26,7 @@ public abstract class Juego {
 		alcanzoVictoria = false;
 		letrasErroneas = new ArrayList<String>();
 		letrasAdivinadas = new TreeMap<Integer,String>();
-		
+		palabrasAdivinadas = 0;
 	}
 	
 	public void inicializarAdivinadas() {
@@ -72,6 +72,9 @@ public abstract class Juego {
 		return palabrasEnNivel;
 	}
 	
+	public int getPalabrasAdivinadas() {
+		return palabrasAdivinadas;
+	}
 	public TreeMap<Integer, String> getLetrasAdivinadas() {
 		return letrasAdivinadas;
 	}
@@ -95,14 +98,14 @@ public abstract class Juego {
 		}
 	}
 	
-	//Disminuye vidas y mostrar en pantalla
+//	Disminuye vidas y mostrar en pantalla
 	public void ingresoIncorrecto(String letraIncorrecta){
 		vidas--;
 		letrasErroneas.add(letraIncorrecta);
 		perder.setCondicionDerrotaVidas(vidas);
 	}
 	
-	//Actualiza palabra a adivinar y realiza calculos de puntaje
+//	Actualiza palabra a adivinar y realiza calculos de puntaje
 	public void ingresoCorrecto(String letraCorrecta) {
 		
 		if (!letrasAdivinadas.containsValue(letraCorrecta)) {
@@ -114,7 +117,7 @@ public abstract class Juego {
 				}
 			}
 		}
-////////////////////////////////////////////////////////////////////////////////////////////////////
+//		Verificar que se adivino toda la palabra
 		if( !letrasAdivinadas.containsValue("_") ) {
 			bonusPalabra();
 			if ( vidas == 5 ) {
@@ -130,12 +133,14 @@ public abstract class Juego {
 					alcanzoVictoria = true;
 				}
 			}
+			palabrasAdivinadas++;
 		}
-////////////////////////////////////////////////////////////////////////////////////////////////////		
 	}
+	
 	public void definirPalabra() {
 		
 	}
+	
 	public void bonusLetra() {
 		puntaje += 2;
 	}
