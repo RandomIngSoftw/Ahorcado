@@ -26,11 +26,12 @@ public class VistaTop10 extends JFrame implements Vista{
 	private List list;
 	
 	public VistaTop10() {
+		setTitle("Top 10");
 		
 		controlador = (Controlador) new ControladorTop10();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 244, 344);
+		setBounds(100, 100, 251, 357);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -40,14 +41,13 @@ public class VistaTop10 extends JFrame implements Vista{
 		lblTop.setBounds(103, 11, 46, 14);
 		contentPane.add(lblTop);
 		
-		btnCerrar = new JButton("Cerrar");
+		btnCerrar = new JButton("Ir Menu Principal");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// cierra
 				controlador.cerrarVentana();
 			}
 		});
-		btnCerrar.setBounds(82, 283, 91, 23);
+		btnCerrar.setBounds(41, 283, 146, 23);
 		contentPane.add(btnCerrar);
 		
 		list = new List();
@@ -68,7 +68,7 @@ public class VistaTop10 extends JFrame implements Vista{
 			i--;
 		}
 		for(int j=0; j<10; j++) {
-			list.add(orden[j]);
+			list.add("" + (j+1) + "  - "+ orden[j]);
 		}
 	}
 }

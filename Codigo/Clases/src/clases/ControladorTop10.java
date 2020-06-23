@@ -44,7 +44,6 @@ public class ControladorTop10 implements Controlador{
 	
 	@Override
 	public void siguienteNivel() {
-		modelo.siguienteNivel();
 			
 	}
 	@Override

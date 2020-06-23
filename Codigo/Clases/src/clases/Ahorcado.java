@@ -1,6 +1,5 @@
 package clases;
 
-import java.awt.event.KeyEvent;
 
 public class Ahorcado {
 	

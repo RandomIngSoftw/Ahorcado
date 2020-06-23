@@ -53,6 +53,7 @@ public class VistaJuegoRelax extends JFrame implements Vista, Observador, KeyLis
 	}
 	
 	public VistaJuegoRelax(Sujeto sujeto) {
+		setTitle("Juego Relax");
 		imagen = new ImageIcon[6];
 		cargarImagenes();
 
@@ -62,7 +63,7 @@ public class VistaJuegoRelax extends JFrame implements Vista, Observador, KeyLis
 		controlador = (Controlador)new ControladorJuegoRelax();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 484, 303);
+		setBounds(100, 100, 486, 320);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

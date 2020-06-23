@@ -29,9 +29,10 @@ public class VistaEstadisticas extends JFrame implements Vista, Observador, KeyL
 	private List list_estadisticas;
 	private JLabel lblEstadisticas;
 	private JButton btnCerrar;
-	private String encabezado = "Nivel  -  Vida  -  Tiempo  - Puntaje";
+	private String encabezado = "Nivel  -  Vida  -  Tiempo  -  Palabras  -  Puntaje";
 	
 	public VistaEstadisticas(Sujeto sujeto) {
+		setTitle("Estadisticas");
 //		observador
 		this.sujeto = sujeto;
 		this.sujeto.suscribirObservador(this);
@@ -41,7 +42,7 @@ public class VistaEstadisticas extends JFrame implements Vista, Observador, KeyL
 		
 //		vista
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 328, 210);
+		setBounds(100, 100, 352, 213);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,11 +58,11 @@ public class VistaEstadisticas extends JFrame implements Vista, Observador, KeyL
 					controlador.cerrarVentana();
 			}
 		});
-		btnCerrar.setBounds(120, 150, 91, 23);
+		btnCerrar.setBounds(129, 141, 91, 23);
 		contentPane.add(btnCerrar);
 		
 		list_estadisticas = new List();
-		list_estadisticas.setBounds(29, 53, 262, 69);
+		list_estadisticas.setBounds(29, 53, 283, 69);
 		setEncabezado();
 		contentPane.add(list_estadisticas);
 	}
@@ -96,7 +97,7 @@ public class VistaEstadisticas extends JFrame implements Vista, Observador, KeyL
 	@Override
 	public void actualizar(int nivel, int puntaje, int vidas, ArrayList<String> letrasErroneas, int tiempo,
 			TreeMap<Integer, String> letrasAdivinadas) {
-		String linea = "" + nivel + "       -       " +vidas + "       -       " + tiempo + 
+		String linea = "" + nivel + "       -       " +vidas + "       -       " + tiempo + "       -       " + 
 				"       -       " + puntaje ;
 		list_estadisticas.removeAll();
 		list_estadisticas.add(encabezado);
