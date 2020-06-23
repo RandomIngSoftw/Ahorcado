@@ -2,6 +2,11 @@ package clases;
 
 public class ControladorPausa implements Controlador{
 
+	private Modelo modelo;
+	
+	public ControladorPausa() {
+		modelo = Modelo.getInstance();
+	}
 	@Override
 	public void juegoNormal() {
 		// TODO Auto-generated method stub
@@ -34,19 +39,28 @@ public class ControladorPausa implements Controlador{
 
 	@Override
 	public void cerrarVentana() {
-		// TODO Auto-generated method stub
+		modelo.cerrarPausa();
 		
 	}
 
 	@Override
 		public void siguienteNivel() {
+			modelo.siguientePalabra();
+		}
+
+	@Override
+		public void ascender(String s) {
 			// TODO Auto-generated method stub
 			
 		}
 
+	public void teclaPresionada(String l) {
+		
+		}
+
 	@Override
-		public void ascender() {
-			// TODO Auto-generated method stub
+		public void iniciar() {
+			
 			
 		}
 

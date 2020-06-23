@@ -10,48 +10,38 @@ public class ControladorJuegoRelax implements Controlador{
 	}
 	
 	@Override
-	public void juegoNormal() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void juegoNormal() {}
 
 	@Override
-	public void juegoRelax() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void juegoRelax() {}
 
 	@Override
-	public void verTop10() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void verTop10() {}
 
 	@Override
-	public void salir() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void salir() {}
 
 	@Override
-	public void cerrarVentana() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void cerrarVentana() {}
 
 	public void verEstadisticas() {
 		modelo.verEstaditicas();
 	}
 
 	@Override
-		public void siguienteNivel() {
-			// TODO Auto-generated method stub
-			
-		}
+	public void siguienteNivel() {}
 
 	@Override
-		public void ascender() {
-			// TODO Auto-generated method stub
+	public void ascender(String s) {}
+
+	@Override
+	public void teclaPresionada(String l) {
+		modelo.ingresoDeLetra(l);
+	}
+
+	@Override
+	public void iniciar() {
+		modelo.iniciar();	
 			
-		}
+	}
 }

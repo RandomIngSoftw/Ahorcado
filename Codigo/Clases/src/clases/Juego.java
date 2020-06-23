@@ -20,7 +20,7 @@ public abstract class Juego {
 	public Juego() {
 		condicionVictoria = false;
 		puntaje = 0;
-		vidas = 6;
+		vidas = 5;
 		nivel = 1;
 		palabrasEnNivel = 0;
 		alcanzoVictoria = false;
@@ -35,7 +35,11 @@ public abstract class Juego {
 			letrasAdivinadas.put( i , "_" );
 		}
 	}
-
+	
+	public void interrupThread() {
+		
+	}
+	
 	public Boolean alcanzoVictoria() {
 		return condicionVictoria;
 	}
@@ -76,13 +80,18 @@ public abstract class Juego {
 		return palabraActual;
 	}
 	
+	public int getTiempo() {
+		return 0;
+	}
+	
 	public void ingresoLetra(String letra) {
-		
-		if ( palabraActual.contains(letra) == false) {
-			ingresoIncorrecto(letra);
-		}
-		else {
-			ingresoCorrecto(letra);
+		if( vidas != 0) {
+			if ( palabraActual.contains(letra) == false) {
+				ingresoIncorrecto(letra);
+			}
+			else {
+				ingresoCorrecto(letra);
+			}
 		}
 	}
 	
@@ -91,9 +100,7 @@ public abstract class Juego {
 		vidas--;
 		letrasErroneas.add(letraIncorrecta);
 		perder.setCondicionDerrotaVidas(vidas);
-	
 	}
-	
 	
 	//Actualiza palabra a adivinar y realiza calculos de puntaje
 	public void ingresoCorrecto(String letraCorrecta) {
@@ -109,21 +116,20 @@ public abstract class Juego {
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 		if( !letrasAdivinadas.containsValue("_") ) {
-		bonusPalabra();
-		if ( vidas == 6 ) {
 			bonusPalabra();
-		}
-		condicionVictoria = true;
-		palabrasEnNivel++;
-		vidas = 6;
-		if ( palabrasEnNivel == 5 ) {
-			nivel++;
-			palabrasEnNivel = 0;
-			if( nivel == 11 ) {
-				alcanzoVictoria = true;
+			if ( vidas == 5 ) {
+				bonusPalabra();
 			}
-		  }
-		definirPalabra();
+			condicionVictoria = true;
+			palabrasEnNivel++;
+			vidas = 5;
+			if ( palabrasEnNivel == 5 ) {
+				nivel++;
+				palabrasEnNivel = 0;
+				if( nivel == 11 ) {
+					alcanzoVictoria = true;
+				}
+			}
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////		
 	}

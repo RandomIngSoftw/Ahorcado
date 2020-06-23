@@ -1,5 +1,8 @@
 package clases;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 public class ControladorJuegoGanado implements Controlador{
 
 	private Modelo modelo;
@@ -51,10 +54,25 @@ public class ControladorJuegoGanado implements Controlador{
 			
 	}
 
+
+	public void teclaPresionada(String l) {
+		
+		}
+
+
 	@Override
-	public void ascender() {
-			// TODO Auto-generated method stub
+		public void iniciar() {
 			
+			
+		}
+
+
+	@Override
+	public void ascender(String s) {
+		// TODO Auto-generated method stub
+		
 	}
+
+
 
 }

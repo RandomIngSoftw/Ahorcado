@@ -9,9 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.List;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.TreeMap;
 import java.awt.event.ActionEvent;
 
-public class VistaJuegoNormal extends JFrame implements Vista, Observador{
+public class VistaJuegoNormal extends JFrame implements Vista, Observador, KeyListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -20,16 +24,21 @@ public class VistaJuegoNormal extends JFrame implements Vista, Observador{
 	private Sujeto sujeto;
 	private JLabel imagen_label;
 	private JLabel lblNivel;
-	private JLabel lblTiempo;
 	private JLabel lblPalabra;
 	private JLabel lblLetras;
-	private JLabel lblJuegoNormal;
+	private JLabel lblPuntaje; 
+	private JButton btnIniciar;
+	private JButton btnVerEstadisticas;
 	private List list_nivel;
 	private List list_Palabra;
 	private List list_LetraErronea;
 	private List list_tiempo;
+	private List list_puntaje;
+	private int i = 0;
+	private JLabel lblTiempo;
 	
 	public VistaJuegoNormal(Sujeto sujeto) {
+		setTitle("Juego Normal");
 		imagen = new ImageIcon[6];
 		cargarImagenes();
 		
@@ -38,21 +47,22 @@ public class VistaJuegoNormal extends JFrame implements Vista, Observador{
 		
 		controlador = (Controlador)new ControladorJuegoNormal();
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 331);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 479, 331);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
 		
-		JButton btnVerEstadisticas = new JButton("Ver Estadisticas");
+		
+		btnVerEstadisticas = new JButton("Ver Estadisticas");
 		btnVerEstadisticas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controlador.verEstadisticas();
+					controlador.verEstadisticas();
 			}
 		});
-		btnVerEstadisticas.setBounds(290, 270, 142, 23);
+		btnVerEstadisticas.setBounds(265, 270, 142, 23);
 		contentPane.add(btnVerEstadisticas);
 		
 		imagen_label = new JLabel("figura");
@@ -61,40 +71,62 @@ public class VistaJuegoNormal extends JFrame implements Vista, Observador{
 		contentPane.add(imagen_label);
 		
 		lblNivel = new JLabel("Nivel");
-		lblNivel.setBounds(145, 234, 46, 14);
+		lblNivel.setBounds(17, 210, 46, 14);
 		contentPane.add(lblNivel);
 		
-		lblTiempo = new JLabel("Tiempo");
-		lblTiempo.setBounds(10, 95, 46, 14);
-		contentPane.add(lblTiempo);
-		
 		list_nivel = new List();
-		list_nivel.setBounds(139, 254, 52, 23);
+		list_nivel.setBounds(83, 210, 52, 23);
 		contentPane.add(list_nivel);
+		list_nivel.add("#####");
 		
 		lblPalabra = new JLabel("Palabra");
-		lblPalabra.setBounds(10, 143, 46, 14);
+		lblPalabra.setBounds(17, 45, 46, 14);
 		contentPane.add(lblPalabra);
 		
 		list_Palabra = new List();
-		list_Palabra.setBounds(62, 134, 100, 23);
+		list_Palabra.setBounds(17, 65, 164, 23);
 		contentPane.add(list_Palabra);
+		list_Palabra.add("# # # # # #");
 		
-		lblLetras = new JLabel("Letras Ingresadas");
-		lblLetras.setBounds(10, 215, 124, 14);
+		lblLetras = new JLabel("Letras Erroneas");
+		lblLetras.setBounds(17, 107, 124, 14);
 		contentPane.add(lblLetras);
 		
 		list_LetraErronea = new List();
-		list_LetraErronea.setBounds(10, 234, 100, 43);
+		list_LetraErronea.setBounds(17, 127, 164, 23);
 		contentPane.add(list_LetraErronea);
-		
-		lblJuegoNormal = new JLabel("Juego Normal");
-		lblJuegoNormal.setBounds(45, 32, 89, 14);
-		contentPane.add(lblJuegoNormal);
+		list_LetraErronea.add("empty");
 		
 		list_tiempo = new List();
-		list_tiempo.setBounds(62, 86, 100, 23);
+		list_tiempo.setBounds(83, 170, 52, 23);
 		contentPane.add(list_tiempo);
+		list_tiempo.add("####");
+		
+		list_puntaje = new List();
+		list_puntaje.setBounds(83, 252, 52, 23);
+		contentPane.add(list_puntaje);
+		list_puntaje.add("####");
+		
+		lblPuntaje = new JLabel("Puntaje");
+		lblPuntaje.setBounds(17, 252, 46, 14);
+		contentPane.add(lblPuntaje);
+		
+		btnIniciar = new JButton("Iniciar");
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(i == 0) {
+					controlador.iniciar();
+					i++;
+				}
+			}
+		});
+		btnIniciar.setBounds(44, 11, 91, 23);
+		contentPane.add(btnIniciar);
+		
+		lblTiempo = new JLabel("Tiempo");
+		lblTiempo.setBounds(17, 170, 46, 14);
+		contentPane.add(lblTiempo);
+		btnIniciar.addKeyListener(this);
 		
 	}
 	
@@ -114,39 +146,64 @@ public class VistaJuegoNormal extends JFrame implements Vista, Observador{
 		setVisible(b);		
 	}
 	
-	public void setTiempo(String tiempo) {
+	public void setTiempo(int tiempo) {
 		list_tiempo.remove(0);
-		list_tiempo.add(tiempo);
+		list_tiempo.add("" + tiempo);
 	}
 	
-	public void setPalabra(String palabra) {
+	public void setPalabra(TreeMap<Integer, String> letrasAdivinadas) {
+		String linea = "";
+		for(int i = 0; i < letrasAdivinadas.size(); i++) {
+			linea += letrasAdivinadas.get(i);
+			linea += " ";
+		}
 		list_Palabra.remove(0);
-		list_Palabra.add(palabra);
+		list_Palabra.add(linea);
 	}
 	
-	public void setLetraErronea(String letra) {
-		String letras = list_LetraErronea.toString();
-		letras.concat(letra);
-		list_LetraErronea.add(letras);
+	public void setLetraErronea(ArrayList<String> letrasErroneas) {
+		String linea = ""; 
+		for(int i=0; i < letrasErroneas.size(); i++) {
+			linea  += letrasErroneas.get(i);
+		}
+		list_LetraErronea.remove(0) ;
+		list_LetraErronea.add(linea);
 	}
 	
 	public void setNivel(int nivel) {
-		list_nivel.remove(0);
+		list_nivel.removeAll();
 		list_nivel.add(""+nivel);
 	}
 	
 	public void setVida(int vida) {
-		contentPane.remove(imagen_label);
-		imagen_label.setBounds(211, 11, imagen[vida].getIconWidth(), imagen[vida].getIconHeight());
 		imagen_label.setIcon(imagen[vida]);
-		contentPane.add(imagen_label);
+	}
+
+	private void setPuntaje(int puntaje) {
+		list_puntaje.remove(0);
+		list_puntaje.add("" + puntaje);
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {}
+
+	@Override
+	public void keyReleased(KeyEvent e) {}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		controlador.teclaPresionada(Character.toString(e.getKeyChar()));
 	}
 
 	@Override
-	public void actualizar(int puntaje, int vida, int nivel, String tiempo, String palabra) {
-		// TODO Auto-generated method stub
-		
+	public void actualizar(int nivel, int puntaje, int vidas, ArrayList<String> letrasErroneas, int tiempo,
+			TreeMap<Integer, String> letrasAdivinadas) {
+		setNivel(nivel);
+		setPuntaje(puntaje);
+		setTiempo(tiempo);
+		setLetraErronea(letrasErroneas);
+		setVida(vidas);
+		setPalabra(letrasAdivinadas);
 	}
-	
-}
 
+}

@@ -19,9 +19,14 @@ public class VistaPausa extends JFrame implements Vista{
 
 	private JPanel contentPane;
 	private Controlador controlador;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JLabel lblNewLabel;
+	private JLabel lblHasPasadoDe;
 	
 	public VistaPausa() {
-		controlador = (Controlador) new ControladorTop10();
+		
+		controlador = (Controlador) new ControladorPausa();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 294, 134);
@@ -30,7 +35,7 @@ public class VistaPausa extends JFrame implements Vista{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Menu Principal");
+		btnNewButton = new JButton("Menu Principal");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controlador.cerrarVentana();
@@ -39,28 +44,27 @@ public class VistaPausa extends JFrame implements Vista{
 		btnNewButton.setBounds(10, 74, 120, 23);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Siguiente Nivel");
+		btnNewButton_1 = new JButton("Siguiente Palabra");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlador.siguienteNivel();
 			}
 			
 		});
-		btnNewButton_1.setBounds(156, 74, 120, 23);
+		btnNewButton_1.setBounds(140, 74, 136, 23);
 		contentPane.add(btnNewButton_1);
 		
-		JLabel lblNewLabel = new JLabel("FELICIDADES");
+		lblNewLabel = new JLabel("FELICIDADES");
 		lblNewLabel.setBounds(105, 11, 84, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblHasPasadoDe = new JLabel("Has pasado de nivel");
-		lblHasPasadoDe.setBounds(94, 36, 125, 14);
+		lblHasPasadoDe = new JLabel("Has adivinado la palabra");
+		lblHasPasadoDe.setBounds(82, 36, 137, 14);
 		contentPane.add(lblHasPasadoDe);
 	}
 
 	@Override
 	public void hacerVisible(boolean b) {
-		// TODO Auto-generated method stub
 		setVisible(b);
 	}
 	

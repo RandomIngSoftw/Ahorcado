@@ -1,5 +1,10 @@
 package clases;
 
+import java.util.ArrayList;
+import java.util.TreeMap;
+
 public interface Observador {
-	void actualizar(int puntaje, int vida, int nivel, String tiempo, String palabra);
+
+	void actualizar(int nivel, int puntaje, int vidas, ArrayList<String> letrasErroneas, int tiempo,
+			TreeMap<Integer, String> letrasAdivinadas);
 }

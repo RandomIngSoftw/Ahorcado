@@ -14,45 +14,35 @@ public class ControladorJuegoNormal implements Controlador{
 		modelo.verEstaditicas();
 	}
 
-	@Override
-	public void juegoNormal() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void juegoRelax() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void verTop10() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void salir() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void cerrarVentana() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-		public void siguienteNivel() {
-			// TODO Auto-generated method stub
-			
+	public void teclaPresionada(String l) {
+		modelo.ingresoDeLetra(l);
 		}
 
 	@Override
-		public void ascender() {
-			// TODO Auto-generated method stub
-			
-		}
+	public void iniciar() {
+		modelo.iniciar();	
+	}
+	
+	@Override
+	public void juegoNormal() {}
+
+	@Override
+	public void juegoRelax() {}
+
+	@Override
+	public void verTop10() {}
+
+	@Override
+	public void salir() {}
+
+	@Override
+	public void cerrarVentana() {}
+
+	@Override
+	public void siguienteNivel() {}
+
+	@Override
+	public void ascender(String s) {}
+
+	
 }

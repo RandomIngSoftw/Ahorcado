@@ -12,12 +12,18 @@ import javax.swing.JTextArea;
 import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Map;
+import java.util.TreeMap;
 import java.awt.event.ActionEvent;
+import java.awt.List;
 
 public class VistaTop10 extends JFrame implements Vista{
 
 	private JPanel contentPane;
 	private Controlador controlador; 
+	private JLabel lblTop;
+	private JButton btnCerrar;
+	private List list;
 	
 	public VistaTop10() {
 		
@@ -30,15 +36,11 @@ public class VistaTop10 extends JFrame implements Vista{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTop = new JLabel("Top 10");
+		lblTop = new JLabel("Top 10");
 		lblTop.setBounds(103, 11, 46, 14);
 		contentPane.add(lblTop);
 		
-		JList list = new JList();
-		list.setBounds(10, 36, 216, 226);
-		contentPane.add(list);
-		
-		JButton btnCerrar = new JButton("Cerrar");
+		btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// cierra
@@ -47,12 +49,26 @@ public class VistaTop10 extends JFrame implements Vista{
 		});
 		btnCerrar.setBounds(82, 283, 91, 23);
 		contentPane.add(btnCerrar);
+		
+		list = new List();
+		list.setBounds(10, 31, 216, 246);
+		contentPane.add(list);
 	}
 
 	@Override
 	public void hacerVisible(boolean b) {
-		// TODO Auto-generated method stub
 		setVisible(b);
 	}
 	
+	public void setTop10(TreeMap<Integer, String> map) {
+		String orden[] = new String[map.size()];
+		int i = map.size()-1;
+		for (Map.Entry<Integer, String> entry : map.entrySet()) {
+			orden[i] = ""+ entry.getKey() + "   "+ entry.getValue();
+			i--;
+		}
+		for(int j=0; j<10; j++) {
+			list.add(orden[j]);
+		}
+	}
 }

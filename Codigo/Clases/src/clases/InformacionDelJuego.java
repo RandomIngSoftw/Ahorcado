@@ -1,19 +1,22 @@
 package clases;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class InformacionDelJuego implements Sujeto {
 
 	private int puntaje;
 	private int vidas;
 	private int nivel;
-	private String palabra;
-	private String tiempo;
+	private int tiempo;
+	private TreeMap<Integer, String> letrasAdivinadas;
+	private ArrayList<String> letrasErroneas;
 	
 	private ArrayList<Observador> observadores;
 	
 	public InformacionDelJuego() {
-		// TODO Auto-generated constructor stub
+		letrasAdivinadas = new TreeMap<Integer, String>();
+		letrasErroneas = new ArrayList<String>();
 		observadores = new ArrayList<Observador>();
 	}
 
@@ -32,11 +35,29 @@ public class InformacionDelJuego implements Sujeto {
 	}
 	
 	@Override
-	public void avisarObservadorer() {
+	public void avisarObservadores() {
 		for(int i = 0; i < observadores.size(); i++ ) {
 			Observador observador = (Observador) observadores.get(i);
-//			observador.actualizar();
+			observador.actualizar(nivel, puntaje, vidas, letrasErroneas,
+					tiempo, letrasAdivinadas);
 		}
+	}
+
+	
+	public TreeMap<Integer, String> getLetrasAdivinadas() {
+		return letrasAdivinadas;
+	}
+
+	public void setLetrasAdivinadas(TreeMap<Integer, String> letrasAdivinadas) {
+		this.letrasAdivinadas = letrasAdivinadas;
+	}
+
+	public ArrayList<String> getLetrasErroneas() {
+		return letrasErroneas;
+	}
+
+	public void setLetrasErroneas(ArrayList<String> letrasErroneas) {
+		this.letrasErroneas = letrasErroneas;
 	}
 
 	public int getPuntaje() {
@@ -63,21 +84,25 @@ public class InformacionDelJuego implements Sujeto {
 		this.nivel = nivel;
 	}
 
-	public String getPalabra() {
-		return palabra;
-	}
-
-	public void setPalabra(String palabra) {
-		this.palabra = palabra;
-	}
-
-	public String getTiempo() {
+	public int getTiempo() {
 		return tiempo;
 	}
 
-	public void setTiempo(String tiempo) {
+	public void setTiempo(int tiempo) {
 		this.tiempo = tiempo;
 	}
 
-
+	public void actualizar(int nivel, int puntaje, int vidas, ArrayList<String> letrasErroneas,
+			int tiempo, TreeMap<Integer, String> letrasAdivinadas) {
+		setNivel(nivel);
+		setPuntaje(puntaje);
+		setVidas(vidas);
+		setTiempo(tiempo);
+		setLetrasAdivinadas(letrasAdivinadas);
+		setLetrasErroneas(letrasErroneas);
+		
+		avisarObservadores();
+	}
+	
+	
 }

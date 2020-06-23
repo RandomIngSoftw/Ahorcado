@@ -54,11 +54,23 @@ public class ControladorDeEstadisiticas implements Controlador{
 	}
 
 
+	public void teclaPresionada(String l) {
+		modelo.ingresoDeLetra(l);
+		}
+
+
 	@Override
-	public void ascender() {
-		// TODO Auto-generated method stub
+	public void iniciar() {
+		
 		
 	}
+
+
+	@Override
+		public void ascender(String name) {
+			// TODO Auto-generated method stub
+			
+		}
 
 
 }

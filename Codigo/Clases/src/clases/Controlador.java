@@ -9,6 +9,8 @@ public interface Controlador {
 	 void verEstadisticas();
 	 void cerrarVentana();
 	 void siguienteNivel();
-	 void ascender();
+	 void ascender(String s);
+	 void teclaPresionada(String l);
+	 void iniciar();
 
 }

@@ -47,10 +47,21 @@ public class ControladorMenuPrincipal implements Controlador{
 		}
 
 	@Override
-		public void ascender() {
+		public void ascender(String s) {
 			// TODO Auto-generated method stub
 			
 		}
+
+	public void teclaPresionada(String l) {
+		
+		}
+
+	@Override
+		public void iniciar() {
+			
+			
+		}
+
 	
 	
 }

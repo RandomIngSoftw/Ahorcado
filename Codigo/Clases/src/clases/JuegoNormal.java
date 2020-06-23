@@ -1,6 +1,7 @@
 package clases;
 
 
+import java.lang.Thread.State;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
@@ -11,13 +12,15 @@ public class JuegoNormal extends Juego implements Runnable{
 	private TreeMap<Integer, ArrayList<String>> palabras;
 	private Tiempo tiempo;
 	private int tiempoTranscurrido;
-	Thread hiloTiempo = new Thread(this);
+	private Modelo modelo;
+	private Thread hiloTiempo = new Thread(this);
 
 	public JuegoNormal(TreeMap<Integer, ArrayList<String>> palabras) {
 		
 		super();
 		this.palabras = new TreeMap<Integer,ArrayList<String>>();
 		this.palabras = palabras;
+		modelo = Modelo.getInstance();
 		tiempo = new TiempoNormal();
 		tiempoTranscurrido = 1;
 		perder = new DerrotaConTiempo();
@@ -52,7 +55,7 @@ public class JuegoNormal extends Juego implements Runnable{
 		letrasErroneas.clear();
 		condicionVictoria = false;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-		if ( palabrasEnNivel >= 1 && nivel >= 1 ) {
+		if ( ((palabrasEnNivel == 0) && (nivel == 1)) == false) {
             hiloTiempo.resume();
             }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,7 +79,7 @@ public void ingresoCorrecto(String letraCorrecta) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 			condicionVictoria = true;
 			palabrasEnNivel++;
-			vidas = 6;
+			
 			if ( palabrasEnNivel == 5 ) {
 				nivel++;
 				palabrasEnNivel = 0;
@@ -84,15 +87,18 @@ public void ingresoCorrecto(String letraCorrecta) {
 					alcanzoVictoria = true;
 				}
 			}
-			definirPalabra();
+			
 			if ( palabrasEnNivel == 1 && nivel == 1 ) {
 				tiempo = new TiempoEspecial( tiempo.getTiempo() );
 			}
 			bonusPalabra();
-			if ( vidas == 6 ) {
+			if ( vidas == 5 ) {
 				bonusPalabra();
 			}
+			
+			vidas = 5;
 		}
+		
 ////////////////////////////////////////////////////////////////////////////////////////////////////		
 	}
 
@@ -103,17 +109,24 @@ public void ingresoCorrecto(String letraCorrecta) {
 	
 	@Override
     public void run() {
-        while(condicionVictoria == false){
-        long dormir = 1;
-        try {
-            TimeUnit.SECONDS.sleep(dormir);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while( (condicionVictoria == false) && (perder.getCondicionDerrota() == false)){
+        	long dormir = 1;
+        	try {
+        		TimeUnit.SECONDS.sleep(dormir);
+        	} catch (InterruptedException e) {
+        		e.printStackTrace();
+        	}
+        	tiempo.setTiempo(tiempo.getTiempo()-1);
+        	tiempoTranscurrido++;
+        	perder.setCondicionDerrotaTiempo(tiempo.getTiempo());
+        	modelo.setInformacionDeJuego();
         }
-        tiempo.setTiempo(tiempo.getTiempo()-1);
-        tiempoTranscurrido++;
-        perder.setCondicionDerrotaTiempo(tiempo.getTiempo());
-        }
-
+        
+        if(condicionVictoria == true) modelo.verJuegoGanado();
+        if(perder.getCondicionDerrota() == true) modelo.verJuegoPerdido();
     }
+	
+	public void interrupThread() {
+		hiloTiempo.suspend();
+	}
 }

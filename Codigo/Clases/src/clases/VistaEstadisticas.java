@@ -15,26 +15,33 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.TreeMap;
 import java.awt.event.ActionEvent;
 
-public class VistaEstadisticas extends JFrame implements Vista, Observador{
+public class VistaEstadisticas extends JFrame implements Vista, Observador, KeyListener{
 
 	private JPanel contentPane;
-	private static Controlador controller;
+	private static Controlador controlador;
 	private Sujeto sujeto;
 	private List list_estadisticas;
 	private JLabel lblEstadisticas;
 	private JButton btnCerrar;
+	private String encabezado = "Nivel  -  Vida  -  Tiempo  - Puntaje";
 	
 	public VistaEstadisticas(Sujeto sujeto) {
-		
+//		observador
 		this.sujeto = sujeto;
 		this.sujeto.suscribirObservador(this);
 		
-		controller = (Controlador) new ControladorDeEstadisiticas();
+//		controlador
+		controlador = (Controlador) new ControladorDeEstadisiticas();
 		
+//		vista
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 304, 300);
+		setBounds(100, 100, 328, 210);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -44,18 +51,17 @@ public class VistaEstadisticas extends JFrame implements Vista, Observador{
 		lblEstadisticas.setBounds(120, 25, 75, 14);
 		contentPane.add(lblEstadisticas);
 		
-		
 		btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.cerrarVentana();
+					controlador.cerrarVentana();
 			}
 		});
-		btnCerrar.setBounds(104, 239, 91, 23);
+		btnCerrar.setBounds(120, 150, 91, 23);
 		contentPane.add(btnCerrar);
 		
 		list_estadisticas = new List();
-		list_estadisticas.setBounds(29, 53, 241, 175);
+		list_estadisticas.setBounds(29, 53, 262, 69);
 		setEncabezado();
 		contentPane.add(list_estadisticas);
 	}
@@ -67,16 +73,34 @@ public class VistaEstadisticas extends JFrame implements Vista, Observador{
 	}
 	
 	private void setEncabezado() {
-		String encabezado = "Nivel  -  Puntaje  -  Vida  -  Tiempo  	";
 		list_estadisticas.add(encabezado);
 	}
 	
-	public void setInformacion(int puntaje, int vida, int nivel, String tiempo, String palabra) {
+
+	@Override
+	public void keyPressed(KeyEvent e) {
 		
 	}
-	
+
 	@Override
-	public void actualizar(int puntaje, int vida, int nivel, String tiempo, String palabra) {
-		setInformacion(puntaje, vida, nivel, tiempo, palabra);
+	public void keyReleased(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		 controlador.teclaPresionada(Character.toString(e.getKeyChar()));
+		
+	}
+
+	@Override
+	public void actualizar(int nivel, int puntaje, int vidas, ArrayList<String> letrasErroneas, int tiempo,
+			TreeMap<Integer, String> letrasAdivinadas) {
+		String linea = "" + nivel + "       -       " +vidas + "       -       " + tiempo + 
+				"       -       " + puntaje ;
+		list_estadisticas.removeAll();
+		list_estadisticas.add(encabezado);
+		list_estadisticas.add(linea);
+
 	}
 }

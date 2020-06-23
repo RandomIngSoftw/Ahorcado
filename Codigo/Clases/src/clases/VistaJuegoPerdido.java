@@ -25,24 +25,17 @@ public class VistaJuegoPerdido extends JFrame implements Vista{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 206, 165);
 		contentPane = new JPanel();
-		contentPane.addAncestorListener(new AncestorListener() {
-			public void ancestorAdded(AncestorEvent arg0) {
-			}
-			public void ancestorMoved(AncestorEvent arg0) {
-			}
-			public void ancestorRemoved(AncestorEvent arg0) {
-			}
-		});
+		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblLoSiento = new JLabel("\u00A1\u00A1 LO SIENTO !!");
-		lblLoSiento.setBounds(53, 23, 96, 14);
+		lblLoSiento.setBounds(30, 23, 96, 14);
 		contentPane.add(lblLoSiento);
 		
 		JLabel lblElJuegoTermin = new JLabel("EL JUEGO TERMIN\u00D3");
-		lblElJuegoTermin.setBounds(53, 48, 96, 14);
+		lblElJuegoTermin.setBounds(30, 48, 119, 14);
 		contentPane.add(lblElJuegoTermin);
 		
 		JButton btnIrMenuPrincipal = new JButton("Ir a Menu Principal");
@@ -58,7 +51,6 @@ public class VistaJuegoPerdido extends JFrame implements Vista{
 
 	@Override
 	public void hacerVisible(boolean b) {
-		// TODO Auto-generated method stub
-		
+		setVisible(b);
 	}
 }

@@ -1,5 +1,10 @@
 package clases;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
+
 import clases.VistaJuegoRelax;
 import clases.VistaTop10;
 
@@ -7,17 +12,19 @@ public class Modelo {
 
 	private static Modelo modelo = null;
 	private InformacionDelJuego informacionDelJuego;
+	private TreeMap<Integer, String> top10;
+	private TreeMap<Integer, ArrayList<String>> palabrasJuegoNormal;
+	private ArrayList<String> palabrasJuegoRelax;
 	private Vista vistaActual;
 	private Vista vistaAdicional;
+	private Vista vistatercera;
 	private JuegoNormal juegoNormal; 
 	private JuegoRelax juegoRelax; 
+	private Juego juegoActual;
 	private Lector lectorActual;
-	
-	private Modelo() {
-		informacionDelJuego = new InformacionDelJuego();
-		vistaActual = null;
-		vistaAdicional = null;
-	}
+	private int flag = -1;
+	private int puntaje;
+	private Thread th;
 	
 	public static Modelo getInstance(){
 		if(modelo == null){
@@ -26,8 +33,65 @@ public class Modelo {
 		return modelo;
 	}
 	
+	private Modelo() {
+		informacionDelJuego = new InformacionDelJuego();
+		vistaActual = null;
+		vistaAdicional = null;
+		vistatercera = null;
+		juegoActual = null;
+		lectorActual = null;
+		top10 = new TreeMap<Integer, String>();
+		palabrasJuegoNormal = new TreeMap<Integer, ArrayList<String>>();
+		palabrasJuegoRelax = new ArrayList<String>();
+	}
+	
+	public void leerArchivos() {
+		try {
+			lectorActual = (Lector) new ArchivoTop10();
+			lectorActual.leerArchivo();
+		}catch(IOException e) {
+			
+		}
+
+		 setTop10(lectorActual.getLecturaMap());
+		 lectorActual = null;
+		 
+		try {
+			lectorActual = (Lector) new ArchivoPalabrasJuegoNormal();
+			lectorActual.leerArchivo();
+		}catch(IOException e) {
+				
+		}
+		setPalabrasJuegoNormal(lectorActual.getLecturaMap_I_Array());
+		lectorActual = null;
+		try {
+			lectorActual = (Lector) new ArchivoPalabrasJuegoRelax();
+			lectorActual.leerArchivo();
+		}catch(IOException e) {
+				
+		}
+		
+		setPalabrasJuegoRelax(lectorActual.getLecturaArrayList());
+	}
+
+	private void setPalabrasJuegoNormal(TreeMap<Integer, ArrayList<String>> lecturaMap_I_Array) {
+		this.palabrasJuegoNormal = lecturaMap_I_Array;
+	}
+
+	private void setPalabrasJuegoRelax(ArrayList<String> arrayList) {
+		this.palabrasJuegoRelax = arrayList;
+		
+	}
+
+	private void setTop10(TreeMap<Integer, String> lecturaMap) {
+		this.top10 = lecturaMap;
+	}
+	
 	public void iniciar() {
-		iniciarVistaMenuPrincipal();
+		if( flag == 2 ) juegoActual = new JuegoRelax(palabrasJuegoRelax);
+		if( flag == 1 ) juegoActual = new JuegoNormal(palabrasJuegoNormal);
+	
+		setInformacionDeJuego();
 	}
 	
 	
@@ -37,16 +101,16 @@ public class Modelo {
 	}
 	
 	public void inciarJuegoRelax(){
+		flag = 2;
 		vistaActual.hacerVisible(false);
 		vistaActual = new VistaJuegoRelax(informacionDelJuego);
-//		juegoRelax = new JuegoRelax();
 		vistaActual.hacerVisible(true);
 	}
 	
 	public void iniciarJuegoNormal() {
+		flag = 1;
 		vistaActual.hacerVisible(false);
 		vistaActual = new VistaJuegoNormal(informacionDelJuego);
-//		juegoNormal = new JuegoNormal();
 		vistaActual.hacerVisible(true);
 	}
 	
@@ -63,7 +127,7 @@ public class Modelo {
 	
 	public void cerrarVentanaJuegoPerdido() {
 		vistaActual.hacerVisible(false);
-		vistaActual = null;
+		vistatercera.hacerVisible(false);
 		iniciarVistaMenuPrincipal();
 	}
 	
@@ -73,34 +137,37 @@ public class Modelo {
 		iniciarVistaMenuPrincipal();
 	}
 	
+	public void cerrarPausa() {
+		vistatercera.hacerVisible(false);
+		iniciarVistaMenuPrincipal();
+	}
+	
 	public void verEstaditicas() {
 		vistaAdicional = (Vista)new VistaEstadisticas(informacionDelJuego);
 		vistaAdicional.hacerVisible(true);
 	}
 
 	public void verTop10(){
-		System.out.print("Se inició vetTop10\n");		
 		vistaActual.hacerVisible(false);
 		vistaActual = (Vista)new VistaTop10();
+		((VistaTop10) vistaActual).setTop10(top10);
 		vistaActual.hacerVisible(true);
 	}
 
 	public void verPausa(){
-		
+		vistatercera = (Vista) new VistaPausa();
+		vistatercera.hacerVisible(true);
 	}
 	
 	public void verJuegoPerdido(){
-		
+		vistatercera = (Vista)new VistaJuegoPerdido();
+		vistatercera.hacerVisible(true);
 	}
 	
 	public void verJuegoGanado(){
 		
 	}
-	
-	public void verGuardarPuntaje(){
 		
-	}
-	
 	public Vista getVistaActual () {
 		return vistaActual;
 	}
@@ -110,22 +177,89 @@ public class Modelo {
 	}
 
 	public void siguienteNivel() {
-	}
-
-	public void ascender() {
 		
 	}
 
 	public void salirJuego() {
-		// falta agregar que se escriban los archivos
+		// falta agregar que se escriba EN TOP
+		try {
+			lectorActual = (Lector) new ArchivoTop10();
+			lectorActual.guardarMapATexto(top10);
+			lectorActual = null;
+		}catch(IOException e) {}
+		
 		vistaActual.hacerVisible(false);
 		vistaActual = null;
 		vistaAdicional = null;
 	}
 	
+	public void ingresoDeLetra(String s){
+		juegoActual.ingresoLetra(s.toLowerCase());
+		// derrota gral
+		if(!juegoActual.alcanzoDerrota()) {
+			// victoria palabra
+			if(!juegoActual.logroVictoria()) {	
+				// victoria gral
+				if(juegoActual.alcanzoVictoria() ) {
+					setInformacionDeJuego();
+					verPausa();
+				}else {
+					setInformacionDeJuego();
+				}
+			}else {
+				setInformacionDeJuego();
+				verJuegoGanado();
+			}
+		}else {
+			setInformacionDeJuego();
+			juegoActual.interrupThread();
+			leerPuntaje();
+			if(PuntajeAlto() == 1) pedirNombre();
+			else verJuegoPerdido();
+		}
+	}
+	
+	private void pedirNombre() {
+		vistaActual.hacerVisible(false);
+		vistatercera = (Vista) new VistaGuardarPuntaje();
+		vistatercera.hacerVisible(true);
+	}
+	
+
+	public void ascender(String name) {
+		vistatercera.hacerVisible(false);
+		top10.put(puntaje, name);
+		verTop10();
+	}
+	
+	private int PuntajeAlto() {
+		for (Map.Entry<Integer, String> entry : top10.entrySet()) {
+			if(  puntaje > entry.getKey() ) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	private void leerPuntaje() {
+		 puntaje = juegoActual.getPuntaje();
+	}
+
+	public void setInformacionDeJuego() {
+		informacionDelJuego.actualizar( juegoActual.getNivel(),  juegoActual.getPuntaje(),
+										juegoActual.getVidas(),	 juegoActual.getLetrasErroneas(),
+										juegoActual.getTiempo(), juegoActual.getLetrasAdivinadas() );
+	}
+
+	public void siguientePalabra() {
+		vistatercera.hacerVisible(false);
+		juegoActual.definirPalabra();
+		setInformacionDeJuego();
+	}
+
+	
 	/*
 	public void guardarPuntaje(){}
-	public void ingresoDeLetra(){}
 	public void guardarPalabrasNormal(Map){}
 	public void guardarPalabrasRelax(List){}
 	

@@ -9,9 +9,9 @@ public class ControladorGuardarPuntaje implements Controlador{
 	}
 	
 	@Override
-	public void ascender() {
+	public void ascender(String name) {
 		// TODO Auto-generated method stub
-		modelo.ascender();
+		modelo.ascender(name);
 	}
 	
 	@Override
@@ -53,6 +53,16 @@ public class ControladorGuardarPuntaje implements Controlador{
 	@Override
 		public void siguienteNivel() {
 			// TODO Auto-generated method stub
+			
+		}
+
+	public void teclaPresionada(String l) {
+		
+		}
+
+	@Override
+		public void iniciar() {
+			
 			
 		}
 

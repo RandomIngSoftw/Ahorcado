@@ -2,8 +2,11 @@ package clases;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.util.ArrayList;
@@ -13,13 +16,11 @@ import java.util.TreeMap;
 
 public class ArchivoPalabrasJuegoNormal implements Lector {
 
-    private TreeMap<Integer, ArrayList> niveles;
+    private TreeMap<Integer, ArrayList<String>> niveles;
     private BufferedReader BR;
 
     ArchivoPalabrasJuegoNormal() throws FileNotFoundException {
-        FileReader arc = new FileReader("C:\\palabras.txt");
-        this.niveles = new TreeMap<Integer, ArrayList>();
-        this.BR = new BufferedReader(arc);
+        this.niveles = new TreeMap<Integer, ArrayList<String>>();
         cargarMap();
     }
 
@@ -32,6 +33,9 @@ public class ArchivoPalabrasJuegoNormal implements Lector {
     @Override
     public void leerArchivo() {
         try {
+
+            FileReader arc = new FileReader(".\\src\\palabras.txt");
+			this.BR = new BufferedReader(arc);
             StreamTokenizer st = new StreamTokenizer(BR);
             while (st.nextToken() != StreamTokenizer.TT_EOF) {
             	guardarLinea(st.sval.length(),st.sval);
@@ -56,8 +60,24 @@ public class ArchivoPalabrasJuegoNormal implements Lector {
     	}
     }
 
-    public TreeMap<Integer, ArrayList> getMap(){
-        return niveles;
-    }
+	@Override
+	public ArrayList getLecturaArrayList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TreeMap<Integer, String> getLecturaMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TreeMap<Integer, ArrayList<String>> getLecturaMap_I_Array() {
+		// TODO Auto-generated method stub
+		return niveles;
+	}
+
+	public void guardarMapATexto(TreeMap<Integer, String> top10) throws IOException{}
 
 }
