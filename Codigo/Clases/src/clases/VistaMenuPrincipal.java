@@ -26,7 +26,7 @@ public class VistaMenuPrincipal extends JFrame implements Vista {
 		
 		setTitle("Ahorcado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 182, 300);
+		setBounds(100, 100, 211, 317);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -40,7 +40,7 @@ public class VistaMenuPrincipal extends JFrame implements Vista {
 				controlador.juegoNormal();
 			}
 		});
-		btnJuegoNormal.setBounds(23, 61, 121, 23);
+		btnJuegoNormal.setBounds(34, 62, 121, 23);
 		contentPane.add(btnJuegoNormal);
 		
 		btnJuegoRelax = new JButton("Juego Relax");
@@ -50,7 +50,7 @@ public class VistaMenuPrincipal extends JFrame implements Vista {
 				//
 			}
 		});
-		btnJuegoRelax.setBounds(23, 115, 121, 23);
+		btnJuegoRelax.setBounds(34, 116, 121, 23);
 		contentPane.add(btnJuegoRelax);
 		
 		btnVerTop = new JButton("Ver Top 10");
@@ -59,7 +59,7 @@ public class VistaMenuPrincipal extends JFrame implements Vista {
 				controlador.verTop10();
 			}
 		});
-		btnVerTop.setBounds(23, 169, 121, 23);
+		btnVerTop.setBounds(34, 178, 121, 23);
 		contentPane.add(btnVerTop);
 		
 		btnSalir = new JButton("Salir");
@@ -68,11 +68,11 @@ public class VistaMenuPrincipal extends JFrame implements Vista {
 				controlador.salir();
 			}
 		});
-		btnSalir.setBounds(23, 228, 121, 23);
+		btnSalir.setBounds(34, 232, 121, 23);
 		contentPane.add(btnSalir);
 		
 		lblMenuPrincipal = new JLabel("Menu Principal");
-		lblMenuPrincipal.setBounds(45, 25, 110, 14);
+		lblMenuPrincipal.setBounds(52, 26, 110, 14);
 		contentPane.add(lblMenuPrincipal);
 		
 	}

@@ -48,7 +48,7 @@ public class VistaJuegoNormal extends JFrame implements Vista, Observador, KeyLi
 		controlador = (Controlador)new ControladorJuegoNormal();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 479, 331);
+		setBounds(100, 100, 489, 348);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

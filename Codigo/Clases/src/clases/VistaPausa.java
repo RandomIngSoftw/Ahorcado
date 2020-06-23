@@ -25,15 +25,17 @@ public class VistaPausa extends JFrame implements Vista{
 	private JLabel lblHasPasadoDe;
 	
 	public VistaPausa() {
+		setTitle("Pausa");
 		
 		controlador = (Controlador) new ControladorPausa();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 294, 134);
+		setBounds(100, 100, 318, 149);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		btnNewButton = new JButton("Menu Principal");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -51,15 +53,15 @@ public class VistaPausa extends JFrame implements Vista{
 			}
 			
 		});
-		btnNewButton_1.setBounds(140, 74, 136, 23);
+		btnNewButton_1.setBounds(156, 74, 136, 23);
 		contentPane.add(btnNewButton_1);
 		
-		lblNewLabel = new JLabel("FELICIDADES");
-		lblNewLabel.setBounds(105, 11, 84, 14);
+		lblNewLabel = new JLabel("\u00A1\u00A1 FELICIDADES !!");
+		lblNewLabel.setBounds(82, 11, 118, 14);
 		contentPane.add(lblNewLabel);
 		
 		lblHasPasadoDe = new JLabel("Has adivinado la palabra");
-		lblHasPasadoDe.setBounds(82, 36, 137, 14);
+		lblHasPasadoDe.setBounds(82, 36, 164, 14);
 		contentPane.add(lblHasPasadoDe);
 	}
 

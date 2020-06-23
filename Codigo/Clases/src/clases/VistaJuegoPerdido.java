@@ -23,19 +23,20 @@ public class VistaJuegoPerdido extends JFrame implements Vista{
 		controlador = (Controlador) new ControladorJuegoPerdido();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 206, 165);
+		setBounds(100, 100, 227, 179);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
 		JLabel lblLoSiento = new JLabel("\u00A1\u00A1 LO SIENTO !!");
-		lblLoSiento.setBounds(30, 23, 96, 14);
+		lblLoSiento.setBounds(50, 24, 96, 14);
 		contentPane.add(lblLoSiento);
 		
 		JLabel lblElJuegoTermin = new JLabel("EL JUEGO TERMIN\u00D3");
-		lblElJuegoTermin.setBounds(30, 48, 119, 14);
+		lblElJuegoTermin.setBounds(40, 49, 121, 14);
 		contentPane.add(lblElJuegoTermin);
 		
 		JButton btnIrMenuPrincipal = new JButton("Ir a Menu Principal");
@@ -45,7 +46,7 @@ public class VistaJuegoPerdido extends JFrame implements Vista{
 				controlador.cerrarVentana();
 			}
 		});
-		btnIrMenuPrincipal.setBounds(30, 90, 139, 23);
+		btnIrMenuPrincipal.setBounds(36, 94, 139, 23);
 		contentPane.add(btnIrMenuPrincipal);
 	}
 

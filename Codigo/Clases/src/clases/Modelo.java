@@ -165,7 +165,8 @@ public class Modelo {
 	}
 	
 	public void verJuegoGanado(){
-		
+		vistatercera = (Vista)new VistaJuegoGanado();
+		vistatercera.hacerVisible(true);
 	}
 		
 	public Vista getVistaActual () {
@@ -176,12 +177,7 @@ public class Modelo {
 		return vistaActual;
 	}
 
-	public void siguienteNivel() {
-		
-	}
-
 	public void salirJuego() {
-		// falta agregar que se escriba EN TOP
 		try {
 			lectorActual = (Lector) new ArchivoTop10();
 			lectorActual.guardarMapATexto(top10);
@@ -189,8 +185,14 @@ public class Modelo {
 		}catch(IOException e) {}
 		
 		vistaActual.hacerVisible(false);
+		
+		if(vistaAdicional != null) vistaAdicional.hacerVisible(false);
+		if(vistatercera != null) vistatercera.hacerVisible(false);
+			
 		vistaActual = null;
 		vistaAdicional = null;
+		vistatercera = null;
+		modelo = null;
 	}
 	
 	public void ingresoDeLetra(String s){
@@ -220,7 +222,6 @@ public class Modelo {
 	}
 	
 	private void pedirNombre() {
-		vistaActual.hacerVisible(false);
 		vistatercera = (Vista) new VistaGuardarPuntaje();
 		vistatercera.hacerVisible(true);
 	}
@@ -256,12 +257,5 @@ public class Modelo {
 		juegoActual.definirPalabra();
 		setInformacionDeJuego();
 	}
-
 	
-	/*
-	public void guardarPuntaje(){}
-	public void guardarPalabrasNormal(Map){}
-	public void guardarPalabrasRelax(List){}
-	
-	*/
 }
