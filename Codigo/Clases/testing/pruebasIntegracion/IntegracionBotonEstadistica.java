@@ -4,19 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import src.Controlador;
-import src.ControladorJuegoNormal;
-import src.ControladorMenuPrincipal;
-import src.Modelo;
+import clases.Controlador;
+import clases.ControladorMenuPrincipal;
+import clases.Modelo;
 
 public class IntegracionBotonEstadistica {
 
 	@Test
-	public void IntegracionBotonEstadisticast() {
+	public void test() {
 		Modelo modelo = Modelo.getInstance();
-		modelo.iniciar();
+		modelo.iniciarVistaMenuPrincipal();
 		
-		Controlador controlador = (Controlador)new ControladorJuegoNormal();
+		Controlador controlador = (Controlador)new ControladorMenuPrincipal();
 		controlador.verEstadisticas();	
 		
 		assertNotNull(modelo.getVistaAdicional());

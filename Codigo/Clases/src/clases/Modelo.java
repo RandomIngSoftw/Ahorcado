@@ -144,8 +144,8 @@ public class Modelo {
 	public void verTop10(){
 		vistaActual.hacerVisible(false);
 		vistaActual = (Vista)new VistaTop10();
-		((VistaTop10) vistaActual).setTop10(top10);
 		vistaActual.hacerVisible(true);
+		((VistaTop10) vistaActual).setTop10(top10);
 	}
 
 	public void verPausa(){
@@ -169,6 +169,10 @@ public class Modelo {
 	
 	public Vista getVistaAdicional() {
 		return vistaActual;
+	}
+	
+	public Juego getJuegoActual() {
+		return juegoActual;
 	}
 
 	public void salirJuego() {

@@ -4,19 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import src.Controlador;
-import src.ControladorJuegoNormal;
-import src.ControladorMenuPrincipal;
-import src.Modelo;
-import src.Vista;
-import src.VistaMenuPrincipal;
+import clases.Modelo;
+import clases.Vista;
 
 public class TestCaseBotonJuegoNormal {
 
 	@Test
-	public void BotonJuegoNormal() {
+	public void test() {
 		Modelo modelo = Modelo.getInstance();
-		modelo.iniciar();
+		modelo.iniciarVistaMenuPrincipal();
 		
 		Vista vistaMenuPrincipal = modelo.getVistaActual();	
 		modelo.inciarJuegoRelax();

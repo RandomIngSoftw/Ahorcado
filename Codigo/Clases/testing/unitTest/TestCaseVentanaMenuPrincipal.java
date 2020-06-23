@@ -4,20 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import src.Modelo;
-import src.Vista;
-import src.VistaMenuPrincipal;
+import clases.Modelo;
+import clases.Vista;
 
-public class TestCaseVentanaMenuPrincipall {
+public class TestCaseVentanaMenuPrincipal {
 
 	@Test
-	public void ventanaMenuPrincipal() {
+	public void test() {
 		Modelo modelo = Modelo.getInstance();
-		modelo.iniciar();
+		modelo.iniciarVistaMenuPrincipal();
 		Vista result = modelo.getVistaActual();
 
 		assertNotNull(result);
 	}
-	
-	
+
 }
