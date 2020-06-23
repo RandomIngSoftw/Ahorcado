@@ -26,7 +26,7 @@ public class ArchivoPalabrasJuegoNormal implements Lector {
 
     private void cargarMap() {
     	for(int i=1 ; i <= 10 ; i++){
-    		niveles.put(i, new ArrayList<>());
+    		niveles.put(i, new ArrayList<String>());
     	}
     }
     

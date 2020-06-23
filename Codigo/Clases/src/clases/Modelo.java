@@ -90,6 +90,13 @@ public class Modelo {
 	
 	
 	public void iniciarVistaMenuPrincipal() {
+		if(vistaActual != null) vistaActual.hacerVisible(false);
+		if(vistaAdicional != null) vistaAdicional.hacerVisible(false);
+		if(vistatercera != null) vistatercera.hacerVisible(false);
+		vistaActual = null;
+		vistaAdicional = null;
+		vistatercera = null;
+		
 		vistaActual = (Vista)new VistaMenuPrincipal();
 		vistaActual.hacerVisible(true);
 	}
@@ -114,25 +121,18 @@ public class Modelo {
 	}
 	
 	public void cerrarVentanaTop10() {
-		vistaActual.hacerVisible(false);
-		vistaActual = null;
 		iniciarVistaMenuPrincipal();
 	}
 	
 	public void cerrarVentanaJuegoPerdido() {
-		vistaActual.hacerVisible(false);
-		vistatercera.hacerVisible(false);
 		iniciarVistaMenuPrincipal();
 	}
 	
 	public void cerrarVentanaJuegoGanado() {
-		vistaActual.hacerVisible(false);
-		vistaActual = null;
 		iniciarVistaMenuPrincipal();
 	}
 	
 	public void cerrarPausa() {
-		vistatercera.hacerVisible(false);
 		iniciarVistaMenuPrincipal();
 	}
 	
