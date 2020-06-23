@@ -9,6 +9,7 @@ public class InformacionDelJuego implements Sujeto {
 	private int vidas;
 	private int nivel;
 	private int tiempo;
+	private int palabrasAdivinadas;
 	private TreeMap<Integer, String> letrasAdivinadas;
 	private ArrayList<String> letrasErroneas;
 	
@@ -39,7 +40,7 @@ public class InformacionDelJuego implements Sujeto {
 		for(int i = 0; i < observadores.size(); i++ ) {
 			Observador observador = (Observador) observadores.get(i);
 			observador.actualizar(nivel, puntaje, vidas, letrasErroneas,
-					tiempo, letrasAdivinadas);
+					tiempo, letrasAdivinadas, palabrasAdivinadas);
 		}
 	}
 
@@ -92,15 +93,23 @@ public class InformacionDelJuego implements Sujeto {
 		this.tiempo = tiempo;
 	}
 
+	public int getPalabrasAdivinadas() {
+		return palabrasAdivinadas;
+	}
+
+	public void setPalabrasAdivinadas(int palabrasAdivinadas) {
+		this.palabrasAdivinadas = palabrasAdivinadas;
+	}
+
 	public void actualizar(int nivel, int puntaje, int vidas, ArrayList<String> letrasErroneas,
-			int tiempo, TreeMap<Integer, String> letrasAdivinadas) {
+			int tiempo, TreeMap<Integer, String> letrasAdivinadas, int palabrasAdivinadas) {
 		setNivel(nivel);
 		setPuntaje(puntaje);
 		setVidas(vidas);
 		setTiempo(tiempo);
 		setLetrasAdivinadas(letrasAdivinadas);
 		setLetrasErroneas(letrasErroneas);
-		
+		setPalabrasAdivinadas(palabrasAdivinadas);
 		avisarObservadores();
 	}
 	

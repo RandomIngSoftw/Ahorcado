@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
-import clases.VistaJuegoRelax;
-import clases.VistaTop10;
-
 public class Modelo {
 
 	private static Modelo modelo = null;
@@ -18,13 +15,10 @@ public class Modelo {
 	private Vista vistaActual;
 	private Vista vistaAdicional;
 	private Vista vistatercera;
-	private JuegoNormal juegoNormal; 
-	private JuegoRelax juegoRelax; 
 	private Juego juegoActual;
 	private Lector lectorActual;
 	private int flag = -1;
 	private int puntaje;
-	private Thread th;
 	
 	public static Modelo getInstance(){
 		if(modelo == null){
@@ -249,7 +243,8 @@ public class Modelo {
 	public void setInformacionDeJuego() {
 		informacionDelJuego.actualizar( juegoActual.getNivel(),  juegoActual.getPuntaje(),
 										juegoActual.getVidas(),	 juegoActual.getLetrasErroneas(),
-										juegoActual.getTiempo(), juegoActual.getLetrasAdivinadas() );
+										juegoActual.getTiempo(), juegoActual.getLetrasAdivinadas(),
+										juegoActual.getPalabrasAdivinadas());
 	}
 
 	public void siguientePalabra() {

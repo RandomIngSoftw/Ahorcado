@@ -191,7 +191,7 @@ public class VistaJuegoRelax extends JFrame implements Vista, Observador, KeyLis
 
 	@Override
 	public void actualizar(int nivel, int puntaje, int vidas, ArrayList<String> letrasErroneas, int tiempo,
-			TreeMap<Integer, String> letrasAdivinadas) {
+			TreeMap<Integer, String> letrasAdivinadas, int palabrasAdivinadas) {
 		setNivel(nivel);
 		setPuntaje(puntaje);
 		setVida(vidas);

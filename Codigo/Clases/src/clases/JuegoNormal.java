@@ -14,7 +14,7 @@ public class JuegoNormal extends Juego implements Runnable{
 	private int tiempoTranscurrido;
 	private Modelo modelo;
 	private Thread hiloTiempo = new Thread(this);
-
+	
 	public JuegoNormal(TreeMap<Integer, ArrayList<String>> palabras) {
 		
 		super();
@@ -54,11 +54,10 @@ public class JuegoNormal extends Juego implements Runnable{
 		inicializarAdivinadas();
 		letrasErroneas.clear();
 		condicionVictoria = false;
-////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		if ( ((palabrasEnNivel == 0) && (nivel == 1)) == false) {
             hiloTiempo.resume();
             }
-////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 	
 public void ingresoCorrecto(String letraCorrecta) {
@@ -72,11 +71,12 @@ public void ingresoCorrecto(String letraCorrecta) {
 				}
 			}
 		}
-////////////////////////////////////////////////////////////////////////////////////////////////////
+//		verificamos si la palabra se adivino completa
 		if( !letrasAdivinadas.containsValue("_") ) {
-////////////////////////////////////////////////////////////////////////////////////////////////////
+//			suspendemos hilos
 			hiloTiempo.suspend();
-////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			palabrasAdivinadas++;
 			condicionVictoria = true;
 			palabrasEnNivel++;
 			
@@ -98,8 +98,7 @@ public void ingresoCorrecto(String letraCorrecta) {
 			
 			vidas = 5;
 		}
-		
-////////////////////////////////////////////////////////////////////////////////////////////////////		
+	
 	}
 
 	public void bonusPalabra() {

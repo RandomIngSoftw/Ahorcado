@@ -96,9 +96,9 @@ public class VistaEstadisticas extends JFrame implements Vista, Observador, KeyL
 
 	@Override
 	public void actualizar(int nivel, int puntaje, int vidas, ArrayList<String> letrasErroneas, int tiempo,
-			TreeMap<Integer, String> letrasAdivinadas) {
+			TreeMap<Integer, String> letrasAdivinadas, int palabrasAdivinadas) {
 		String linea = "" + nivel + "       -       " +vidas + "       -       " + tiempo + "       -       " + 
-				"       -       " + puntaje ;
+				palabrasAdivinadas + "       -       " + puntaje ;
 		list_estadisticas.removeAll();
 		list_estadisticas.add(encabezado);
 		list_estadisticas.add(linea);

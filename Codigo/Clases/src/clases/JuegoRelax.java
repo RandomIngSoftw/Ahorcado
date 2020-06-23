@@ -10,7 +10,6 @@ public class JuegoRelax extends Juego {
 	public JuegoRelax(ArrayList<String> palabras) {
 		
 		super();
-//		this.palabras = new ArrayList<String>();
 		this.palabras = palabras;
 		definirPalabra();
 		perder = new DerrotaSinTiempo();
