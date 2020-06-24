@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 
 public class Modelo {
 
@@ -182,7 +183,7 @@ public class Modelo {
 		
 		if(vistaAdicional != null) vistaAdicional.hacerVisible(false);
 		if(vistatercera != null) vistatercera.hacerVisible(false);
-			
+
 		vistaActual = null;
 		vistaAdicional = null;
 		vistatercera = null;
@@ -209,17 +210,21 @@ public class Modelo {
 		}else {
 			setInformacionDeJuego();
 			juegoActual.interrupThread();
-			leerPuntaje();
-			if(PuntajeAlto() == 1) pedirNombre();
-			else verJuegoPerdido();
+			verPedirNombre();
 		}
 	}
 	
 	private void pedirNombre() {
+		if(vistaAdicional != null) vistaAdicional.hacerVisible(false);
 		vistatercera = (Vista) new VistaGuardarPuntaje();
 		vistatercera.hacerVisible(true);
 	}
-	
+
+	public void verPedirNombre() {
+		leerPuntaje();
+		if((PuntajeAlto() == 1) || (top10.size() != 0)) pedirNombre();
+		else verJuegoPerdido();
+	}
 
 	public void ascender(String name) {
 		vistatercera.hacerVisible(false);

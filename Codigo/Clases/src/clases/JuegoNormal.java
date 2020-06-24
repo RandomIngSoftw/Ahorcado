@@ -13,7 +13,7 @@ public class JuegoNormal extends Juego implements Runnable{
 	private Tiempo tiempo;
 	private int tiempoTranscurrido;
 	private Modelo modelo;
-	private Thread hiloTiempo = new Thread(this);
+	public Thread hiloTiempo = new Thread(this);
 	
 	public JuegoNormal(TreeMap<Integer, ArrayList<String>> palabras) {
 		
@@ -122,10 +122,11 @@ public void ingresoCorrecto(String letraCorrecta) {
         }
         
         if(condicionVictoria == true) modelo.verJuegoGanado();
-        if(perder.getCondicionDerrota() == true) modelo.verJuegoPerdido();
+        if(perder.getCondicionDerrota() == true)modelo.verPedirNombre();
+
     }
 	
 	public void interrupThread() {
-		hiloTiempo.suspend();
+		hiloTiempo.interrupt();
 	}
 }

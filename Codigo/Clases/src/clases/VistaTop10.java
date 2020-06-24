@@ -61,14 +61,16 @@ public class VistaTop10 extends JFrame implements Vista{
 	}
 	
 	public void setTop10(TreeMap<Integer, String> map) {
-		String orden[] = new String[map.size()];
-		int i = map.size()-1;
-		for (Map.Entry<Integer, String> entry : map.entrySet()) {
-			orden[i] = ""+ entry.getKey() + "   "+ entry.getValue();
-			i--;
-		}
-		for(int j=0; j<10; j++) {
-			list.add("" + (j+1) + "  - "+ orden[j]);
+		if(map.size() != 0) {
+			String orden[] = new String[map.size()];
+			int i = map.size();
+			for (Map.Entry<Integer, String> entry : map.entrySet()) {
+				if(i != 0) orden[--i] = ""+ entry.getKey() + "   "+ entry.getValue();
+//				i--;
+			}
+			for(int j=0; j<10; j++) {
+				if(j < orden.length) list.add(orden[j]);
+			}
 		}
 	}
 }

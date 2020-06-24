@@ -27,11 +27,11 @@ public class ArchivoTop10 implements Lector {
     @Override
     public void guardarMapATexto(TreeMap<Integer, String> top10) throws IOException{
     	try {
-			f  = new FileWriter(".\\src\\Top10.txt");
+			f  = new FileWriter("Top10.txt");
 			pw = new PrintWriter(f);
 			
 			for (Map.Entry<Integer, String> entry : top10.entrySet()) {
-				pw.print(""+ entry.getKey() + " " + entry.getValue() + "\n");
+					pw.print(""+ entry.getKey() + " " + entry.getValue() + "\n");
 			}
 		}
 		catch(IOException e){
@@ -44,7 +44,7 @@ public class ArchivoTop10 implements Lector {
     @Override
     public void leerArchivo () throws IOException {
     	try {
-    			FileReader arc = new FileReader(".\\src\\Top10.txt");
+    			FileReader arc = new FileReader("Top10.txt");
     			this.BR = new BufferedReader(arc);
     			StreamTokenizer st = new StreamTokenizer(BR);
     			while (st.nextToken() != StreamTokenizer.TT_EOF) {

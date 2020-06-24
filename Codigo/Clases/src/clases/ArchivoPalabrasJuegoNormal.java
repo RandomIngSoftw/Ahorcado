@@ -34,7 +34,7 @@ public class ArchivoPalabrasJuegoNormal implements Lector {
     public void leerArchivo() {
         try {
 
-            FileReader arc = new FileReader(".\\src\\palabras.txt");
+            FileReader arc = new FileReader("palabras.txt");
 			this.BR = new BufferedReader(arc);
             StreamTokenizer st = new StreamTokenizer(BR);
             while (st.nextToken() != StreamTokenizer.TT_EOF) {
