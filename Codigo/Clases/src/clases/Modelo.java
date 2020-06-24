@@ -89,7 +89,6 @@ public class Modelo {
 		setInformacionDeJuego();
 	}
 	
-	
 	public void iniciarVistaMenuPrincipal() {
 		if(vistaActual != null) vistaActual.hacerVisible(false);
 		if(vistaAdicional != null) vistaAdicional.hacerVisible(false);
