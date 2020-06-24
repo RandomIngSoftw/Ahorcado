@@ -68,11 +68,11 @@ public class Modelo {
 		setPalabrasJuegoRelax(lectorActual.getLecturaArrayList());
 	}
 
-	private void setPalabrasJuegoNormal(TreeMap<Integer, ArrayList<String>> lecturaMap_I_Array) {
+	public void setPalabrasJuegoNormal(TreeMap<Integer, ArrayList<String>> lecturaMap_I_Array) {
 		this.palabrasJuegoNormal = lecturaMap_I_Array;
 	}
 
-	private void setPalabrasJuegoRelax(ArrayList<String> arrayList) {
+	public void setPalabrasJuegoRelax(ArrayList<String> arrayList) {
 		this.palabrasJuegoRelax = arrayList;
 		
 	}
@@ -259,6 +259,10 @@ public class Modelo {
 		vistatercera.hacerVisible(false);
 		juegoActual.definirPalabra();
 		setInformacionDeJuego();
+	}
+	
+	public Vista getVistaTercera() {
+		return vistatercera;
 	}
 	
 }
