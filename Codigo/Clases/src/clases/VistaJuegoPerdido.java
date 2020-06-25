@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class VistaJuegoPerdido extends JFrame implements Vista{
 
@@ -19,6 +20,7 @@ public class VistaJuegoPerdido extends JFrame implements Vista{
 	private Controlador controlador;
 	
 	public VistaJuegoPerdido() {
+		setTitle("Juego Perdido");
 		
 		controlador = (Controlador) new ControladorJuegoPerdido();
 		
@@ -32,11 +34,13 @@ public class VistaJuegoPerdido extends JFrame implements Vista{
 		setLocationRelativeTo(null);
 		
 		JLabel lblLoSiento = new JLabel("\u00A1\u00A1 LO SIENTO !!");
-		lblLoSiento.setBounds(50, 24, 96, 14);
+		lblLoSiento.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLoSiento.setBounds(10, 24, 199, 14);
 		contentPane.add(lblLoSiento);
 		
 		JLabel lblElJuegoTermin = new JLabel("EL JUEGO TERMIN\u00D3");
-		lblElJuegoTermin.setBounds(40, 49, 121, 14);
+		lblElJuegoTermin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblElJuegoTermin.setBounds(10, 49, 199, 14);
 		contentPane.add(lblElJuegoTermin);
 		
 		JButton btnIrMenuPrincipal = new JButton("Ir a Menu Principal");
@@ -46,7 +50,7 @@ public class VistaJuegoPerdido extends JFrame implements Vista{
 				controlador.cerrarVentana();
 			}
 		});
-		btnIrMenuPrincipal.setBounds(36, 94, 139, 23);
+		btnIrMenuPrincipal.setBounds(36, 94, 155, 23);
 		contentPane.add(btnIrMenuPrincipal);
 	}
 

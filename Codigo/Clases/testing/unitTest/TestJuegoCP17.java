@@ -34,6 +34,11 @@ public class TestJuegoCP17 {
 		modelo.iniciarJuegoNormal();
 		modelo.iniciar();
 		vista = modelo.getVistaActual();
+		
+	}
+
+	@Test
+	public void test() {		
 
 		try {
     		TimeUnit.SECONDS.sleep(31);
@@ -41,17 +46,19 @@ public class TestJuegoCP17 {
     		e.printStackTrace();
     	}
 		
-		
-	}
-
-	@Test
-	public void test() {		
 		assertNotEquals(vista,modelo.getVistaTercera());
 		
 	}
 	
 	@Test
 	public void test2() {
+
+		try {
+    		TimeUnit.SECONDS.sleep(31);
+    	} catch (InterruptedException e) {
+    		e.printStackTrace();
+    	}
+		
 		assertNotEquals(modelo.getVistaTercera(),null);
 		
 	}

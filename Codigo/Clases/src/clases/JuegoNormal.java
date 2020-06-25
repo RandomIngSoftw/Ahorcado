@@ -126,7 +126,7 @@ public void ingresoCorrecto(String letraCorrecta) {
 
     }
 	
-	public void interrupThread() {
-		hiloTiempo.interrupt();
+	public void suspendThread() {
+		hiloTiempo.suspend();
 	}
 }

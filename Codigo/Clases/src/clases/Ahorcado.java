@@ -1,8 +1,5 @@
 package clases;
 
-
-import java.io.File;
-
 public class Ahorcado {
 
 	public static void main(String[] args) {

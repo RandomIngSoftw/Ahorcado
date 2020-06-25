@@ -27,7 +27,7 @@ public class TestJuegoCP16 {
 
 	@Test
 	public void test() {
-		assertEquals(1,juego.getNivel());
+		assertEquals(1, juego.getNivel());
 	}
 	
 	@Test
@@ -37,17 +37,17 @@ public class TestJuegoCP16 {
 	
 	@Test
 	public void test3() {
-		assertEquals(5,juego.getVidas());
+		assertEquals(5, juego.getVidas());
 	}
 	
 	@Test
 	public void test4() {
-		assertEquals("TestCase",juego.getPalabraActual());
+		assertEquals("TestCase", juego.getPalabraActual());
 	}
 	
 	@Test
 	public void test5() {
-		assertEquals(30,juego.getTiempo());
+		assertEquals(30, juego.getTiempo());
 	}
 
 }

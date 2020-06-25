@@ -2,8 +2,6 @@ package clases;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -11,7 +9,6 @@ import java.util.TreeMap;
 public class ArchivoTop10 implements Lector {
     private TreeMap<Integer, String> Top10;
     private BufferedReader BR;
-    private String Linea;
     private FileWriter f;
     private PrintWriter pw;
     
@@ -31,7 +28,7 @@ public class ArchivoTop10 implements Lector {
 			pw = new PrintWriter(f);
 			
 			for (Map.Entry<Integer, String> entry : top10.entrySet()) {
-					pw.print(""+ entry.getKey() + " " + entry.getValue() + "\n");
+					pw.println(""+ entry.getKey() + " " + entry.getValue());
 			}
 		}
 		catch(IOException e){
@@ -65,7 +62,7 @@ public class ArchivoTop10 implements Lector {
    }
 
 	@Override
-	public ArrayList getLecturaArrayList() {
+	public ArrayList<String> getLecturaArrayList() {
 		return null;
 	}
 
