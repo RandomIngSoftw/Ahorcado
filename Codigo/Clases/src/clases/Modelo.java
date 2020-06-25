@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.concurrent.TimeUnit;
 
 public class Modelo {
 
@@ -208,7 +207,7 @@ public class Modelo {
 			}
 		}else {
 			setInformacionDeJuego();
-			juegoActual.interrupThread();
+			juegoActual.suspendThread();
 			verPedirNombre();
 		}
 	}
@@ -221,7 +220,7 @@ public class Modelo {
 
 	public void verPedirNombre() {
 		leerPuntaje();
-		if((PuntajeAlto() == 1) || (top10.size() != 0)) pedirNombre();
+		if((PuntajeAlto() == 1) && (top10.size() != 0)) pedirNombre();
 		else verJuegoPerdido();
 	}
 
@@ -233,7 +232,7 @@ public class Modelo {
 	
 	private int PuntajeAlto() {
 		for (Map.Entry<Integer, String> entry : top10.entrySet()) {
-			if(  puntaje > entry.getKey() ) {
+			if(  juegoActual.getPuntaje() > entry.getKey() ) {
 				return 1;
 			}
 		}

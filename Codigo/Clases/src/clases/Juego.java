@@ -36,7 +36,7 @@ public abstract class Juego {
 		}
 	}
 	
-	public void interrupThread() {
+	public void suspendThread() {
 		
 	}
 	

@@ -1,16 +1,11 @@
 package clases;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.TreeMap;
 
 
@@ -61,7 +56,7 @@ public class ArchivoPalabrasJuegoNormal implements Lector {
     }
 
 	@Override
-	public ArrayList getLecturaArrayList() {
+	public ArrayList<String> getLecturaArrayList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
